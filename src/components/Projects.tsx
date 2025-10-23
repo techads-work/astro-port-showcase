@@ -15,8 +15,9 @@ const Projects = () => {
     const ctx = gsap.context(() => {
       gsap.from('.project-card', {
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top center',
+          trigger: '.project-card',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
         },
         y: 100,
         opacity: 0,
@@ -35,6 +36,7 @@ const Projects = () => {
       tech: ['React', 'TypeScript', 'Chart.js', 'Tailwind'],
       github: '#',
       demo: '#',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
     },
     {
       title: 'E-commerce Platform',
@@ -42,6 +44,7 @@ const Projects = () => {
       tech: ['Next.js', 'Node.js', 'MongoDB', 'Stripe'],
       github: '#',
       demo: '#',
+      image: 'https://images.unsplash.com/photo-1661956602116-aa6865609028?w=800&h=500&fit=crop',
     },
     {
       title: 'Blog CMS',
@@ -49,6 +52,7 @@ const Projects = () => {
       tech: ['React', 'Express', 'PostgreSQL', 'AWS'],
       github: '#',
       demo: '#',
+      image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=500&fit=crop',
     },
     {
       title: 'Data Pipeline Tool',
@@ -56,6 +60,7 @@ const Projects = () => {
       tech: ['Python', 'Apache Spark', 'Docker', 'Airflow'],
       github: '#',
       demo: '#',
+      image: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=500&fit=crop',
     },
   ];
 
@@ -73,45 +78,56 @@ const Projects = () => {
           {projects.map((project, index) => (
             <Card
               key={index}
-              className="project-card bg-card/50 backdrop-blur-sm border-primary/30 p-6 card-glow"
+              className="project-card bg-card/50 backdrop-blur-sm border-primary/30 overflow-hidden card-glow"
             >
-              <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-              <p className="text-muted-foreground mb-4">{project.description}</p>
-
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.tech.map((tech, i) => (
-                  <Badge
-                    key={i}
-                    variant="secondary"
-                    className="bg-secondary/50"
-                  >
-                    {tech}
-                  </Badge>
-                ))}
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={`${project.title} preview`}
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
               </div>
+              
+              <div className="p-6">
+                <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
+                <p className="text-muted-foreground mb-4">{project.description}</p>
 
-              <div className="flex gap-3">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-primary/50 hover:border-primary hover:bg-primary/10"
-                  asChild
-                >
-                  <a href={project.github} target="_blank" rel="noopener noreferrer">
-                    <Github className="h-4 w-4 mr-2" />
-                    Code
-                  </a>
-                </Button>
-                <Button
-                  size="sm"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90"
-                  asChild
-                >
-                  <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    Live Demo
-                  </a>
-                </Button>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tech.map((tech, i) => (
+                    <Badge
+                      key={i}
+                      variant="secondary"
+                      className="bg-secondary/50"
+                    >
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-primary/50 hover:border-primary hover:bg-primary/10"
+                    asChild
+                  >
+                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                      <Github className="h-4 w-4 mr-2" />
+                      Code
+                    </a>
+                  </Button>
+                  <Button
+                    size="sm"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90"
+                    asChild
+                  >
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Live Demo
+                    </a>
+                  </Button>
+                </div>
               </div>
             </Card>
           ))}

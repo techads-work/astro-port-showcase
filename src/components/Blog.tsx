@@ -16,8 +16,9 @@ const Blog = () => {
     const ctx = gsap.context(() => {
       gsap.from('.blog-card', {
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top center',
+          trigger: '.blog-card',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
         },
         y: 100,
         opacity: 0,
@@ -27,7 +28,7 @@ const Blog = () => {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [activeTab]);
 
   const hashnodeArticles = [
     {

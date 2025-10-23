@@ -13,8 +13,9 @@ const Achievements = () => {
     const ctx = gsap.context(() => {
       gsap.from('.achievement-card', {
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top center',
+          trigger: '.achievement-card',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
         },
         scale: 0,
         opacity: 0,

@@ -13,8 +13,9 @@ const About = () => {
     const ctx = gsap.context(() => {
       gsap.from('.about-card', {
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top center',
+          trigger: '.about-card',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
         },
         y: 100,
         opacity: 0,
@@ -35,7 +36,11 @@ const About = () => {
     {
       icon: GraduationCap,
       title: 'Education',
-      items: ['Datta Meghe College of Engineering', 'Final Year Engineering Student', 'Computer Science Major'],
+      items: [
+        'Engineering - Datta Meghe College of Engineering',
+        'Diploma - [Your Diploma College Name]',
+        'School - [Your School Name]'
+      ],
     },
     {
       icon: Gamepad2,
@@ -54,36 +59,13 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-          <div className="space-y-6">
-            <p className="text-lg leading-relaxed">
-              As a final-year engineering student at Datta Meghe College of Engineering, I've immersed myself in the world of web development and data engineering. My journey in tech has been driven by curiosity and a desire to build solutions that make a difference.
-            </p>
-            <p className="text-lg leading-relaxed">
-              Beyond coding, I'm passionate about sharing knowledge through technical writing on platforms like Hashnode and Medium, where I document my learning experiences and help others navigate their tech journeys.
-            </p>
-          </div>
-          
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-neon-cyan/20 rounded-lg blur-3xl" />
-            <Card className="relative bg-card/50 backdrop-blur-sm border-primary/30 p-8 card-glow">
-              <h3 className="text-2xl font-bold mb-4">Quick Stats</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Projects Completed</span>
-                  <span className="text-2xl font-bold text-primary">15+</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Blog Articles</span>
-                  <span className="text-2xl font-bold text-primary">20+</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-muted-foreground">Technologies</span>
-                  <span className="text-2xl font-bold text-primary">10+</span>
-                </div>
-              </div>
-            </Card>
-          </div>
+        <div className="max-w-3xl mx-auto mb-16 space-y-6">
+          <p className="text-lg leading-relaxed">
+            As a final-year engineering student at Datta Meghe College of Engineering, I've immersed myself in the world of web development and data engineering. My journey in tech has been driven by curiosity and a desire to build solutions that make a difference.
+          </p>
+          <p className="text-lg leading-relaxed">
+            Beyond coding, I'm passionate about sharing knowledge through technical writing on platforms like Hashnode and Medium, where I document my learning experiences and help others navigate their tech journeys.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">

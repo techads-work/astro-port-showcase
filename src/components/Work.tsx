@@ -13,8 +13,9 @@ const Work = () => {
     const ctx = gsap.context(() => {
       gsap.from('.work-card', {
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top center',
+          trigger: '.work-card',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
         },
         x: -100,
         opacity: 0,
@@ -26,14 +27,7 @@ const Work = () => {
     return () => ctx.revert();
   }, []);
 
-  const experiences = [
-    {
-      company: 'Freelance Web Developer',
-      role: 'Full Stack Developer',
-      duration: '2024 - Present',
-      description: 'Building custom web solutions for clients, focusing on modern React applications with seamless user experiences.',
-      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js'],
-    },
+  const professionalExperiences = [
     {
       company: 'Data Engineering Intern',
       role: 'Data Engineer',
@@ -50,6 +44,16 @@ const Work = () => {
     },
   ];
 
+  const freelanceExperiences = [
+    {
+      company: 'Freelance Projects',
+      role: 'Full Stack Developer',
+      duration: '2024 - Present',
+      description: 'Building custom web solutions for clients, focusing on modern React applications with seamless user experiences.',
+      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js'],
+    },
+  ];
+
   return (
     <section id="work" ref={sectionRef} className="py-20 relative">
       <div className="container mx-auto px-6">
@@ -60,39 +64,84 @@ const Work = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-8">
-          {experiences.map((exp, index) => (
-            <Card
-              key={index}
-              className="work-card bg-card/50 backdrop-blur-sm border-primary/30 p-6 md:p-8 card-glow relative overflow-hidden"
-            >
-              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary to-neon-cyan" />
-              
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                <div>
-                  <h3 className="text-2xl font-bold mb-1">{exp.role}</h3>
-                  <p className="text-lg text-primary">{exp.company}</p>
-                </div>
-                <Badge variant="outline" className="border-primary/50 text-primary w-fit">
-                  {exp.duration}
-                </Badge>
-              </div>
+        <div className="max-w-4xl mx-auto space-y-12">
+          {/* Professional Experience */}
+          <div>
+            <h3 className="text-2xl font-bold mb-6 text-primary">Professional Experience</h3>
+            <div className="space-y-8">
+              {professionalExperiences.map((exp, index) => (
+                <Card
+                  key={index}
+                  className="work-card bg-card/50 backdrop-blur-sm border-primary/30 p-6 md:p-8 card-glow relative overflow-hidden"
+                >
+                  <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary to-neon-cyan" />
+                  
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                    <div>
+                      <h4 className="text-2xl font-bold mb-1">{exp.role}</h4>
+                      <p className="text-lg text-primary">{exp.company}</p>
+                    </div>
+                    <Badge variant="outline" className="border-primary/50 text-primary w-fit">
+                      {exp.duration}
+                    </Badge>
+                  </div>
 
-              <p className="text-muted-foreground mb-6">{exp.description}</p>
+                  <p className="text-muted-foreground mb-6">{exp.description}</p>
 
-              <div className="flex flex-wrap gap-2">
-                {exp.tech.map((tech, i) => (
-                  <Badge
-                    key={i}
-                    variant="secondary"
-                    className="bg-secondary/50 hover:bg-secondary/70"
-                  >
-                    {tech}
-                  </Badge>
-                ))}
-              </div>
-            </Card>
-          ))}
+                  <div className="flex flex-wrap gap-2">
+                    {exp.tech.map((tech, i) => (
+                      <Badge
+                        key={i}
+                        variant="secondary"
+                        className="bg-secondary/50 hover:bg-secondary/70"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Freelance Work */}
+          <div>
+            <h3 className="text-2xl font-bold mb-6 text-primary">Freelance Work</h3>
+            <div className="space-y-8">
+              {freelanceExperiences.map((exp, index) => (
+                <Card
+                  key={index}
+                  className="work-card bg-card/50 backdrop-blur-sm border-primary/30 p-6 md:p-8 card-glow relative overflow-hidden"
+                >
+                  <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary to-neon-cyan" />
+                  
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                    <div>
+                      <h4 className="text-2xl font-bold mb-1">{exp.role}</h4>
+                      <p className="text-lg text-primary">{exp.company}</p>
+                    </div>
+                    <Badge variant="outline" className="border-primary/50 text-primary w-fit">
+                      {exp.duration}
+                    </Badge>
+                  </div>
+
+                  <p className="text-muted-foreground mb-6">{exp.description}</p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {exp.tech.map((tech, i) => (
+                      <Badge
+                        key={i}
+                        variant="secondary"
+                        className="bg-secondary/50 hover:bg-secondary/70"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
