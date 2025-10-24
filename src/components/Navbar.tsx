@@ -20,67 +20,69 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-card/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'
-      }`}
-    >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <button
-            onClick={() => scrollToSection('home')}
-            className="text-2xl font-bold glow-text"
-          >
-            AJ
-          </button>
-          
-          <div className="hidden md:flex items-center gap-8">
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4 transition-all duration-300">
+      <nav
+        className={`bg-card/80 backdrop-blur-lg shadow-lg rounded-full border border-border transition-all duration-300 ${
+          isScrolled ? 'max-w-4xl' : 'max-w-6xl'
+        } w-full`}
+      >
+        <div className="px-8 py-4">
+          <div className="flex items-center justify-between">
             <button
               onClick={() => scrollToSection('home')}
-              className="text-sm font-medium hover:text-primary transition-colors"
+              className="text-xl font-bold"
             >
-              Home
+              Aditya Jambhale
             </button>
-            <button
-              onClick={() => scrollToSection('about')}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection('work')}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Work
-            </button>
-            <button
-              onClick={() => scrollToSection('projects')}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => scrollToSection('blog')}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Blog
-            </button>
-            <button
-              onClick={() => scrollToSection('achievements')}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Achievements
-            </button>
-            <Button
-              onClick={() => scrollToSection('contact')}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 glow-border"
-            >
-              Contact
-            </Button>
+            
+            <div className="hidden md:flex items-center gap-8">
+              <button
+                onClick={() => scrollToSection('home')}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Home
+              </button>
+              <button
+                onClick={() => scrollToSection('about')}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                About
+              </button>
+              <button
+                onClick={() => scrollToSection('work')}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Work
+              </button>
+              <button
+                onClick={() => scrollToSection('projects')}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Projects
+              </button>
+              <button
+                onClick={() => scrollToSection('blog')}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Blog
+              </button>
+              <button
+                onClick={() => scrollToSection('achievements')}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Achievements
+              </button>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Contact
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 };
 

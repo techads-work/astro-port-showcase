@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { Button } from '@/components/ui/button';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Github, Linkedin, Mail, FileText, Instagram } from 'lucide-react';
 import adityaPortrait from '@/assets/aditya-portrait.jpg';
 
 const Hero = () => {
@@ -12,51 +12,42 @@ const Hero = () => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
       
-      tl.from('.hero-title', {
-        y: 100,
+      tl.from('.hero-image', {
+        scale: 0,
         opacity: 0,
         duration: 1,
-        stagger: 0.2,
       })
-      .from('.hero-subtitle', {
+      .from('.hero-title', {
         y: 50,
         opacity: 0,
         duration: 0.8,
       }, '-=0.5')
-      .from('.hero-buttons', {
+      .from('.hero-subtitle', {
         y: 30,
         opacity: 0,
-        duration: 0.8,
-      }, '-=0.5')
-      .from('.hero-social', {
-        scale: 0,
+        duration: 0.6,
+      }, '-=0.4')
+      .from('.hero-badge', {
+        y: 20,
         opacity: 0,
         duration: 0.5,
         stagger: 0.1,
-      }, '-=0.3');
-
-      // Floating animation for image
-      gsap.to(imageRef.current, {
-        y: -20,
-        duration: 3,
-        ease: 'power1.inOut',
-        repeat: -1,
-        yoyo: true,
-      });
+      }, '-=0.3')
+      .from('.hero-social', {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+      }, '-=0.2');
     }, heroRef);
 
     return () => ctx.revert();
   }, []);
 
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <section
       id="home"
       ref={heroRef}
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-32 pb-20"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -64,93 +55,101 @@ const Hero = () => {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-cyan/10 rounded-full blur-3xl animate-glow-pulse" style={{ animationDelay: '1s' }} />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h1 className="hero-title text-5xl md:text-7xl font-bold leading-tight">
-              Crafting Code,
-              <br />
-              <span className="glow-text">Creating Impact</span>
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-card/40 backdrop-blur-sm border border-border rounded-3xl p-8 sm:p-12 lg:p-16">
+            {/* Profile Image */}
+            <div className="flex justify-center mb-8">
+              <div className="hero-image relative">
+                <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full border-2 border-foreground/20 overflow-hidden">
+                  <img
+                    src={adityaPortrait}
+                    alt="Aditya Jambhale - Profile"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute inset-0 rounded-full border-2 border-foreground/10" />
+              </div>
+            </div>
+
+            {/* Heading */}
+            <h1 className="hero-title text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-6">
+              Hey 👋 I am Aditya Jambhale
             </h1>
-            
-            <p className="hero-subtitle text-xl md:text-2xl text-muted-foreground">
+
+            {/* Subtitle */}
+            <p className="hero-subtitle text-base sm:text-lg lg:text-xl text-center mb-8 text-foreground/80">
               Final Year Engineering Student | Web Developer | Tech Explorer
             </p>
-            
-            <p className="hero-subtitle text-lg text-muted-foreground max-w-lg">
-              Passionate about building elegant web solutions and exploring the vast universe of technology.
-              Currently pursuing my engineering degree while freelancing and sharing my journey through technical writing.
-            </p>
 
-            <div className="hero-buttons flex flex-wrap gap-4">
-              <Button
-                onClick={scrollToContact}
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 glow-border"
-              >
-                Get In Touch
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-primary/50 hover:border-primary hover:bg-primary/10"
-              >
-                View My Work
-              </Button>
+            {/* Badges */}
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10">
+              <Badge variant="outline" className="hero-badge px-6 py-2 text-sm sm:text-base border-foreground/20 bg-background/50">
+                Full Stack Developer
+              </Badge>
+              <Badge variant="outline" className="hero-badge px-6 py-2 text-sm sm:text-base border-foreground/20 bg-background/50">
+                Freelancer
+              </Badge>
+              <Badge variant="outline" className="hero-badge px-6 py-2 text-sm sm:text-base border-foreground/20 bg-background/50">
+                Tech Explorer
+              </Badge>
             </div>
 
-            <div className="flex gap-4 pt-4">
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hero-social"
-              >
-                <Button
-                  size="icon"
-                  variant="outline"
-                  className="border-primary/50 hover:border-primary hover:bg-primary/10"
-                >
-                  <Github className="h-5 w-5" />
-                </Button>
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hero-social"
-              >
-                <Button
-                  size="icon"
-                  variant="outline"
-                  className="border-primary/50 hover:border-primary hover:bg-primary/10"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </Button>
-              </a>
-              <a
-                href="mailto:aditya@example.com"
-                className="hero-social"
-              >
-                <Button
-                  size="icon"
-                  variant="outline"
-                  className="border-primary/50 hover:border-primary hover:bg-primary/10"
-                >
-                  <Mail className="h-5 w-5" />
-                </Button>
-              </a>
-            </div>
-          </div>
-
-          <div ref={imageRef} className="relative">
-            <div className="relative w-full aspect-square max-w-md mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-neon-cyan/20 rounded-full blur-2xl" />
-              <img
-                src={adityaPortrait}
-                alt="Aditya Jambhale"
-                className="relative rounded-full w-full h-full object-cover border-4 border-primary/30 glow-border"
-              />
+            {/* Social Links */}
+            <div className="hero-social border-t border-border pt-8">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <span className="text-sm sm:text-base font-medium">Follow Me on</span>
+                <div className="flex flex-wrap items-center justify-center gap-2 text-sm sm:text-base text-muted-foreground">
+                  <a
+                    href="https://hashnode.com/@adityajambhale"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors flex items-center gap-1"
+                  >
+                    <FileText className="h-4 w-4" />
+                    Hashnode
+                  </a>
+                  <span>•</span>
+                  <a
+                    href="https://linkedin.com/in/adityajambhale"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors flex items-center gap-1"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                    LinkedIn
+                  </a>
+                  <span>•</span>
+                  <a
+                    href="https://instagram.com/adityajambhale"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors flex items-center gap-1"
+                  >
+                    <Instagram className="h-4 w-4" />
+                    Instagram
+                  </a>
+                  <span>•</span>
+                  <a
+                    href="https://github.com/adityajambhale"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors flex items-center gap-1"
+                  >
+                    <Github className="h-4 w-4" />
+                    Github
+                  </a>
+                  <span>•</span>
+                  <a
+                    href="https://twitter.com/adityajambhale"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
+                    Twitter
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
